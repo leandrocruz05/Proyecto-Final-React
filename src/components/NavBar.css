@@ -1,0 +1,60 @@
+.navbar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: url("../assets/fondo2.png") center/cover no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    z-index: 1000;
+}
+
+.navbar-top .logo img {
+    height: 55px;
+}
+
+#carrito-icono img {
+    width: 35px;
+    height: 35px;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+.navbar-bottom {
+    background: #db0101;
+    padding: 5px 0;
+    margin-top: 82px;
+}
+
+.navbar-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#filtro-tipo {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+#filtro-tipo button {
+    font-family: "Titan One", sans-serif;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#filtro-tipo button:hover {
+    color: black;
+}
