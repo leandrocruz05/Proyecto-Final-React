@@ -17,13 +17,6 @@
     height: 55px;
 }
 
-#carrito-icono img {
-    width: 35px;
-    height: 35px;
-    filter: brightness(0) invert(1);
-    cursor: pointer;
-}
-
 .navbar-bottom {
     background: #db0101;
     padding: 5px 0;
