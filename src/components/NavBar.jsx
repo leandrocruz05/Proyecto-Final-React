@@ -1,5 +1,4 @@
 import './NavBar.css'
-import logo from '../assets/logo.png';
 import CartWidget from "./CartWidget"
 
 function NavBar() {
@@ -7,7 +6,7 @@ function NavBar() {
         <>
             <div className="navbar-top">
                 <div className="logo">
-                    <img src={logo} alt="Logo Store" />                    
+                    <img src="/src/assets/logo.png" alt="Logo Store" />                    
                 </div>
                 <CartWidget/>
             </div>
