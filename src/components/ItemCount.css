@@ -1,0 +1,31 @@
+.item-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    border: 2px solid #1a7ec6;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.item-count button {
+    background: none;
+    color: #1a7ec6;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.item-count button:hover {
+    background: #e6f0fa;
+    color: #155fa3;
+}
