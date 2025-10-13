@@ -144,3 +144,5 @@ const productos = [
         "description": "Llavero cinta, pequeño accesorio para llevar el club a todos lados."
     }
 ]
+
+export default productos;

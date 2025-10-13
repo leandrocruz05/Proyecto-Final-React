@@ -1,30 +1,41 @@
 import './ItemDetailContainer.css'
-import { useState } from "react";
-import { DotLoader, RingLoader } from "react-spinners";
+import { useEffect, useState } from "react";
 import ItemCount from './ItemCount';
+import { useParams } from 'react-router';
+import getProductosById from "../data/MockAPI"
+import Loader from './Loader';
 
 function ItemDetailContainer() {
-    const [itemData, setItemData] = useState({ loading: false });
+    const [itemData, setItemData] = useState({})
+    const { idParam } = useParams()
+    const [loader, setLoader] = useState(true)
+    useEffect(() => {
+        setLoader(true)
+        getProductosById(idParam).then(res => {
+            setItemData(res)
+            setLoader(false)
+        })
+    })
+    
+    const valorCuota = itemData.price ? (itemData.price / 6) : 0
 
     return (
         <div>
             {
-                itemData.loading ?
-                    <div className="loader">
-                        <DotLoader color="red" />
-                    </div>
+                loader ?
+                    <Loader />
                     :
                     <div className="detalle">
                         <div className="cuadro">
                             <div className="img">
-                                <img src='/camisetatitular.jpeg' alt="" />
+                                <img src={itemData.img} alt={itemData.title} />
                             </div>
                         </div>
                         <div className="info">
-                            <div className="titulo">Titulo</div>
-                            <div className="precio">Precio</div>
+                            <div className="titulo">{itemData.title}</div>
+                            <div className="precio">${itemData.price}</div>
                             <div className="beneficios">
-                                💳 6 cuotas <b>sin interés</b> de <b>$16.666,50</b><br />
+                                💳 6 cuotas <b>sin interés</b> de <b>${valorCuota}</b><br />
                                 💵<b>10% de descuento</b> pagando con Transferencia o depósito
                             </div>
                             <div className="talles">
@@ -36,7 +47,7 @@ function ItemDetailContainer() {
                                 <button className="talle-btn">XXL</button>
                             </div>
                             <div className="acciones">
-                                <ItemCount />
+                                <ItemCount greeting={itemData.stock} />
                                 <button className="agregar-carrito">AGREGAR AL CARRITO</button>
                             </div>
                             <div className="envio">
@@ -55,7 +66,7 @@ function ItemDetailContainer() {
 
             }
         </div>
-    );
+    )
 }
 
 export default ItemDetailContainer;
