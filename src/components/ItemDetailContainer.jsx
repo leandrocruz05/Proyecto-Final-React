@@ -16,14 +16,16 @@ function ItemDetailContainer() {
                     :
                     <div className="detalle">
                         <div className="cuadro">
-                            <div className="img"></div>
+                            <div className="img">
+                                <img src='/camisetatitular.jpeg' alt="" />
+                            </div>
                         </div>
                         <div className="info">
                             <div className="titulo">Titulo</div>
                             <div className="precio">Precio</div>
                             <div className="beneficios">
-                                💳 6 cuotas sin interés de $16.666,50<br />
-                                💵<span>10% de descuento</span> pagando con Transferencia o depósito
+                                💳 6 cuotas <b>sin interés</b> de <b>$16.666,50</b><br />
+                                💵<b>10% de descuento</b> pagando con Transferencia o depósito
                             </div>
                             <div className="talles">
                                 <label>Talle:</label>

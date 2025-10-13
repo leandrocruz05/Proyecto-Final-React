@@ -4,14 +4,14 @@
     justify-content: center;
     gap: 10px;
     background: #fff;
-    border: 2px solid #1a7ec6;
+    border: 2px solid #db0101d5;
     border-radius: 10px;
     width: fit-content;
 }
 
 .item-count button {
     background: none;
-    color: #1a7ec6;
+    color: #db0101d5;
     border: none;
     border-radius: 50%;
     width: 36px;
@@ -26,6 +26,6 @@
 }
 
 .item-count button:hover {
-    background: #e6f0fa;
-    color: #155fa3;
+    background: #fadbdb;
+    color: #db0101;
 }
