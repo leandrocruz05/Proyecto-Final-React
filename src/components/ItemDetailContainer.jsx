@@ -9,6 +9,7 @@ function ItemDetailContainer() {
     const [itemData, setItemData] = useState({})
     const { idParam } = useParams()
     const [loader, setLoader] = useState(true)
+
     useEffect(() => {
         setLoader(true)
         getProductosById(idParam).then(res => {
@@ -16,9 +17,9 @@ function ItemDetailContainer() {
             setLoader(false)
         })
     })
-    
-    const valorCuota = itemData.price ? (itemData.price / 6) : 0
 
+    const valorCuota = itemData.price ? (itemData.price / 6) : 0
+    
     return (
         <div>
             {
