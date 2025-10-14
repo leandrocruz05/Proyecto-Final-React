@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import ItemDetailContainer from './components/ItemDetailContainer'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/categoria/:categParam' element={<ItemListContainer />} />
         <Route path='*' element={<div className='pageError'><h3>ERROR 404 - PAGINA NO ENCONTRADA</h3></div>} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   )
 }
