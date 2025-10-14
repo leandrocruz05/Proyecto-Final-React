@@ -10,14 +10,21 @@ export default function getProductos() {
 
 export function getProductosById(idParam) {
     return new Promise((resolve) => {
-        const itemRequerido = productos.find((item) => item.id === parseInt(idParam))
-        setTimeout(() => { resolve(itemRequerido) }, 0)
+        const itemId = productos.find((item) => item.id === parseInt(idParam))
+        setTimeout(() => { resolve(itemId) }, 0)
     })
 }
 
 export function getProductosByCateg(catParam) {
     return new Promise((resolve) => {
-        const itemRequerido = productos.filter((item) => item.category === catParam)
-        setTimeout(() => { resolve(itemRequerido) }, 0)
+        const itemCateg = productos.filter((item) => item.category === catParam)
+        setTimeout(() => { resolve(itemCateg) }, 0)
     })
 }
+
+// export function getStockById(idParam) {
+//     return new Promise((resolve) => {
+//         const itemStock = productos.filter((stock) => stock.id === parseInt(idParam))
+//         resolve(itemStock.stock)
+//     })
+// }

@@ -2,11 +2,11 @@ import './ItemDetailContainer.css'
 import { useEffect, useState } from "react";
 import ItemCount from './ItemCount';
 import { useParams } from 'react-router';
-import getProductosById from "../data/MockAPI"
+import { getProductosById } from "../data/MockAPI"
 import Loader from './Loader';
 
 function ItemDetailContainer() {
-    const [itemData, setItemData] = useState({})
+    const [itemData, setItemData] = useState()
     const { idParam } = useParams()
     const [loader, setLoader] = useState(true)
 
@@ -16,10 +16,10 @@ function ItemDetailContainer() {
             setItemData(res)
             setLoader(false)
         })
-    })
+    }, [])
 
-    const valorCuota = itemData.price ? (itemData.price / 6) : 0
-    
+    const valorCuota = itemData?.price ? (itemData.price / 6).toFixed(2) : 0
+
     return (
         <div>
             {
@@ -48,7 +48,7 @@ function ItemDetailContainer() {
                                 <button className="talle-btn">XXL</button>
                             </div>
                             <div className="acciones">
-                                <ItemCount greeting={itemData.stock} />
+                                <ItemCount idParam={idParam} />
                                 <button className="agregar-carrito">AGREGAR AL CARRITO</button>
                             </div>
                             <div className="envio">
@@ -64,7 +64,6 @@ function ItemDetailContainer() {
                             </div>
                         </div>
                     </div>
-
             }
         </div>
     )
