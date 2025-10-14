@@ -15,10 +15,10 @@ function NavBar() {
                 <nav className="navbar-menu">
                     <ul id="filtro-tipo">
                         <Link to="/"><button value="">TODOS</button></Link>
-                        <Link to="/camisetas"><button value="camisetas">CAMISETAS</button></Link>
-                        <Link to="/entrenamiento"><button value="entrenamiento">ENTRENAMIENTO</button></Link>
-                        <Link to="/buzos"><button value="buzos">BUZOS</button></Link>
-                        <Link to="/accesorios"><button value="accesorios">ACCESORIOS</button></Link>
+                        <Link to="/categoria/Camisetas"><button value="CAMISETAS">CAMISETAS</button></Link>
+                        <Link to="/categoria/Entrenamiento"><button value="ENTRENAMIENTO">ENTRENAMIENTO</button></Link>
+                        <Link to="/categoria/Buzos"><button value="BUZOS">BUZOS</button></Link>
+                        <Link to="/categoria/Accesorios"><button value="ACCESORIOS">ACCESORIOS</button></Link>
                     </ul>
                 </nav>
             </div>

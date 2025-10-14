@@ -7,13 +7,13 @@ import Loader from './Loader'
 
 function ItemListContainer(props) {
     const [producto, setProductos] = useState([])
-    const { catParam } = useParams()
+    const { categParam } = useParams()
     const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         setLoader(true)
-        if (catParam) {
-            getProductosByCateg(catParam).then(dato => {
+        if (categParam) {
+            getProductosByCateg(categParam).then(dato => {
                 setProductos(dato)
                 setLoader(false)
             });
@@ -23,11 +23,11 @@ function ItemListContainer(props) {
                 setLoader(false)
             })
         }
-    }, [catParam])
+    }, [categParam])
 
     return (
         <section className="productos">
-            <h2>{props.greeting}</h2>
+            {<h2>{categParam ? categParam.toUpperCase() : props.greeting}</h2>}
             {
                 loader ?
                     <Loader />
