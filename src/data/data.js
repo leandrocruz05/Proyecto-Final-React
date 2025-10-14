@@ -14,7 +14,7 @@ const productos = [
         "category": "Camisetas",
         "price": 70000,
         "img": "/camisetalatidos.jpeg",
-        "stock": 10,
+        "stock": 14,
         "description": "Camiseta edición especial LAtidos, diseño único y exclusivo."
     },
     {
@@ -23,7 +23,7 @@ const productos = [
         "category": "Camisetas",
         "price": 65000,
         "img": "/camisetaalternativa.jpeg",
-        "stock": 10,
+        "stock": 17,
         "description": "Camiseta alternativa II, ideal para coleccionistas y fanáticos."
     },
     {
@@ -32,7 +32,7 @@ const productos = [
         "category": "Camisetas",
         "price": 54000,
         "img": "/camisetapurasangre.jpeg",
-        "stock": 10,
+        "stock": 14,
         "description": "Camiseta Pura Sangre, representa la pasión y entrega en cada partido."
     },
     {
@@ -41,7 +41,7 @@ const productos = [
         "category": "Buzos",
         "price": 59000,
         "img": "/buzocangurofriza.jpeg",
-        "stock": 10,
+        "stock": 20,
         "description": "Buzo canguro con friza, ideal para días fríos y confortables."
     },
     {
@@ -50,7 +50,7 @@ const productos = [
         "category": "Buzos",
         "price": 59000,
         "img": "/buzocondorazul.png",
-        "stock": 10,
+        "stock": 40,
         "description": "Buzo Condór II Azul, diseño moderno y cálido para el invierno."
     },
     {
@@ -59,7 +59,7 @@ const productos = [
         "category": "Buzos",
         "price": 59000,
         "img": "/buzocondorrojo.png",
-        "stock": 10,
+        "stock": 13,
         "description": "Buzo Condór II Rojo, ideal para fanáticos que prefieren el color rojo."
     },
     {
@@ -86,7 +86,7 @@ const productos = [
         "category": "Entrenamiento",
         "price": 32000,
         "img": "/musculosa.jpg",
-        "stock": 15,
+        "stock": 9,
         "description": "Musculosa Dublin Azul, fresca y cómoda para el verano."
     },
     {
@@ -95,7 +95,7 @@ const productos = [
         "category": "Entrenamiento",
         "price": 34000,
         "img": "/striker.jpg",
-        "stock": 15,
+        "stock": 21,
         "description": "Remera Striker Azul, diseño deportivo y ligero para entrenamiento."
     },
     {
@@ -104,7 +104,7 @@ const productos = [
         "category": "Entrenamiento",
         "price": 32000,
         "img": "/rojaentrenamiento.jpg",
-        "stock": 15,
+        "stock": 23,
         "description": "Camiseta Titan Roja, perfecta para entrenar con estilo y comodidad."
     },
     {
@@ -113,7 +113,7 @@ const productos = [
         "category": "Accesorios",
         "price": 6000,
         "img": "/iman.jpg",
-        "stock": 30,
+        "stock": 12,
         "description": "Imán con diseño del estadio, ideal para coleccionistas."
     },
     {
@@ -131,7 +131,7 @@ const productos = [
         "category": "Accesorios",
         "price": 20000,
         "img": "/portallaves.jpg",
-        "stock": 20,
+        "stock": 5,
         "description": "Portallave con motivo del estadio, útil para organizar tus llaves."
     },
     {

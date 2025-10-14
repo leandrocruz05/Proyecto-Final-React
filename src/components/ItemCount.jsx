@@ -1,10 +1,10 @@
 import "./ItemCount.css"
 import { useState } from "react"
 
-function ItemCount(stock) {
+function ItemCount() {
     const [count, setCount] = useState(0)
     const [limit, setLimit] = useState(false)
-    const maxValue = stock.stock
+    const maxValue = 10
 
     function sumar() {
         if (count < maxValue) {
