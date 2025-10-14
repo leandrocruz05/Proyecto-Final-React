@@ -9,10 +9,10 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path='/' element={<ItemListContainer greeting='INDUMENTARIA 2025' />}></Route>
-        <Route path='/detalle/:idParam' element={<ItemDetailContainer />}></Route>
-        <Route path='/categoria/catParam' element={<ItemListContainer greeting='' />}></Route>
-        <Route path='*' element={<div className='pageError'><h3>ERROR 404 - PAGINA NO ENCONTRADA</h3></div>}></Route>
+        <Route path='/' element={<ItemListContainer greeting='INDUMENTARIA 2025' />} />
+        <Route path='/detalle/:idParam' element={<ItemDetailContainer />} />
+        <Route path='/categoria/:categParam' element={<ItemListContainer />} />
+        <Route path='*' element={<div className='pageError'><h3>ERROR 404 - PAGINA NO ENCONTRADA</h3></div>} />
       </Routes>
     </BrowserRouter>
   )
