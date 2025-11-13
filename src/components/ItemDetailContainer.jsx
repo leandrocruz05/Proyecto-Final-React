@@ -2,8 +2,8 @@ import './ItemDetailContainer.css'
 import { useEffect, useState } from "react";
 import ItemCount from './ItemCount';
 import { useParams } from 'react-router';
-import { getProductosById } from "../data/MockAPI"
 import Loader from './Loader';
+import { getProductosById } from '../data/firebaseService';
 
 function ItemDetailContainer() {
     const [itemData, setItemData] = useState()
