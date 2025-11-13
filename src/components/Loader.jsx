@@ -1,5 +1,5 @@
+import '../styles/ItemDetailContainer.css'
 import { DotLoader } from "react-spinners";
-import './ItemDetailContainer.css'
 
 const Loader = () => (
     <div className="loader">

@@ -1,4 +1,4 @@
-import './CartWidget.css'
+import '../styles/CartWidget.css'
 
 function CartWidget() {
     return (

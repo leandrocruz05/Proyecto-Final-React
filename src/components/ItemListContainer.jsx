@@ -1,5 +1,5 @@
+import '../styles/ItemListContainer.css'
 import { useEffect, useState } from 'react'
-import './ItemListContainer.css'
 import { useParams } from 'react-router'
 import Item from "./Item"
 import Loader from './Loader'

@@ -1,4 +1,4 @@
-import './Item.css'
+import '../styles/Item.css'
 import { Link } from 'react-router'
 
 export default function Item(props) {

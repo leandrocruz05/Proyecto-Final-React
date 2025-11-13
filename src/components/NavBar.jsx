@@ -1,4 +1,4 @@
-import './NavBar.css'
+import '../styles/NavBar.css'
 import CartWidget from "./CartWidget"
 import { Link } from 'react-router'
 
