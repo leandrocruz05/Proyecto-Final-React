@@ -1,4 +1,4 @@
-import "./ItemCount.css"
+import "../styles/ItemCount.css"
 import { useState } from "react"
 
 function ItemCount() {

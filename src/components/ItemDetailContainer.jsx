@@ -1,4 +1,4 @@
-import './ItemDetailContainer.css'
+import '../styles/ItemDetailContainer.css'
 import { useEffect, useState } from "react";
 import ItemCount from './ItemCount';
 import { useParams } from 'react-router';
