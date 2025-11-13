@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import './ItemListContainer.css'
 import { useParams } from 'react-router'
-import getProductos, { getProductosByCateg } from '../data/MockAPI'
 import Item from "./Item"
 import Loader from './Loader'
+import getProductos, { getProductosByCateg } from '../data/firebaseService'
 
 function ItemListContainer(props) {
     const [producto, setProductos] = useState([])
