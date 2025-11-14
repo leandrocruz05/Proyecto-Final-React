@@ -23,6 +23,16 @@ export function CartContextProvider(props) {
             newCartItems.push(item)
             setCartItems(newCartItems)
         }
+
+        // Mostrar toast notification
+        Toastify({
+            text: `🛒¡Se agrego ${item.nombre} al carrito!`,
+            duration: 2500,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "red",
+            stopOnFocus: true
+        }).showToast();
     }
 
     function removeItem(id) {
