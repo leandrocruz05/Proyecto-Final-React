@@ -4,3 +4,16 @@
     filter: brightness(0) invert(1);
     cursor: pointer;
 }
+
+.cantidad-carrito {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e53935;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
