@@ -1,14 +1,34 @@
 import '../styles/ItemDetailContainer.css'
 import ItemCount from "./ItemCount";
 import Loader from './Loader';
+import cartContext from "../context/CartContext";
+import { useContext, useState } from 'react';
+import { toast } from 'react-toastify'
 
 function ItemDetail({ itemData, loader }) {
     const valorCuota = itemData?.price ? (itemData.price / 6).toFixed(2) : 0
+    const { addItem } = useContext(cartContext)
+    const [quantity, setQuantity] = useState(1)
 
     if (loader) {
         return <Loader />
     }
 
+    function addToCart() {
+        if (quantity === 0) {
+            toast.warn('La cantidad debe ser mayor a cero', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                stopOnFocus: false
+            })
+            return
+        }
+        addItem({ ...itemData, quantity })
+    }
     return (
         <div>
             <div className="detalle">
@@ -33,8 +53,8 @@ function ItemDetail({ itemData, loader }) {
                         <button className="talle-btn">XXL</button>
                     </div>
                     <div className="acciones">
-                        <ItemCount stock={itemData.stock} />
-                        <button className="agregar-carrito">AGREGAR AL CARRITO</button>
+                        <ItemCount stock={itemData.stock} onQuantityChange={setQuantity} />
+                        <button className="agregar-carrito" onClick={addToCart}>AGREGAR AL CARRITO</button>
                     </div>
                     <div className="envio">
                         <label>Medios de envío</label><br />

@@ -1,9 +1,13 @@
 import "../styles/ItemCount.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function ItemCount({ stock }) {
+function ItemCount({ stock, onQuantityChange }) {
     const [count, setCount] = useState(0);
     const [limit, setLimit] = useState(false);
+
+    useEffect(() => {
+        onQuantityChange(count)
+    }, [count, onQuantityChange])
 
     function sumar() {
         if (count < stock) {
