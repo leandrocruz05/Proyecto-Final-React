@@ -5,6 +5,8 @@ const CartContext = createContext({ carrito: [] })
 
 export function CartContextProvider(props) {
     const [cartItems, setCartItems] = useState([])
+    const codigosDescuento = { "CODER123": 0.10 , "CODER456": 0.15 , "CODER789": 0.20 , "CODER000": 0.25 }
+    const codigosUsados = []
 
     function addItem(item) { //Agrega un item al carrito
         const existItem = cartItems.find(cartItem => cartItem.id === item.id)
@@ -77,8 +79,51 @@ export function CartContextProvider(props) {
         return totalPrice
     }
 
+    function aplicaDescuento(codigo) { //Aplica un descuento al total del carrito
+        if (codigo in codigosDescuento) {
+            if (codigosUsados.includes(codigo)) {
+                toast.info("El cupón ya fue utilizado", {
+                    position: "top-center",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    backgroundColor: "red",
+                    stopOnFocus: false
+                });
+                return codigosUsados[codigo]
+            }
+            const descuento = getTotalPrice() * codigosDescuento[codigo]
+            codigosUsados.push(codigo)
+            toast.success(`¡Cupón aplicado! ${codigosDescuento[codigo] * 100}% de descuento`, {
+                position: "top-center",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                backgroundColor: "red",
+                stopOnFocus: false
+            });
+            return descuento
+        } else {
+            toast.error("Código de cupón inválido", {
+                position: "top-center",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                backgroundColor: "red",
+                stopOnFocus: false
+            });
+            return 0
+        }
+    }
+
     return <CartContext.Provider
-        value={{ carrito: cartItems, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice }}>
+        value={{ carrito: cartItems, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice, aplicaDescuento }}>
         {props.children}
     </CartContext.Provider>
 }

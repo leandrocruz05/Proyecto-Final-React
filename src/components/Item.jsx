@@ -9,7 +9,7 @@ export default function Item(props) {
             </Link>
             <div className="info-producto">
                 <h3>{props.title}</h3>
-                <span>${props.price}</span>
+                <span>${(props.price ?? 0).toLocaleString('es-AR')}</span>
                 {/* <button>¡La quiero!</button> */}
             </div>
         </div>
