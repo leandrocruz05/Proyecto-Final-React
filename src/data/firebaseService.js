@@ -45,7 +45,7 @@ export async function getProductosByCateg(catParam) {
 
 export async function createBuyOrder(orderData) {
     const orderRef = collection(db, "ordenesDeCompra")
-    const newDoc = addDoc(orderRef, orderData)
+    const newDoc = await addDoc(orderRef, orderData)
     return newDoc
 }
 
