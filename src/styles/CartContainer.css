@@ -126,7 +126,7 @@
 
 .cart-sidebar .cupon-box {
   border: 1px solid #cfe4f5;
-  background: #f4fbff;
+  background: #ffffff;
   padding: 14px;
   border-radius: 6px;
   margin-bottom: 18px;
@@ -171,6 +171,7 @@
 .summary-row.total {
   font-weight: 800;
   font-size: 18px;
+  color: #db0101;
 }
 
 .total {
@@ -192,6 +193,7 @@
 .btn-secondary {
   background: #f3f7fb;
   color: #db0101;
+  margin-top: 10px;
 }
 
 .btn.finalizar {
@@ -199,49 +201,7 @@
   margin-top: 12px;
 }
 
-/* Checkout modal */
-.checkout-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(8, 20, 30, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1200;
-}
-
-.checkout-modal-inner {
-  width: 480px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-}
-
-.checkout-form h3 {
-  margin-top: 0;
-}
-
-.checkout-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 13px;
-  color: #223;
-}
-
-.checkout-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #e1e6eb;
-  border-radius: 6px;
-  margin-top: 6px;
-}
-
-/* Empty / thank you */
-.empty-cart {
+.carrito-vacio {
   padding: 28px 12px;
   text-align: left;
   color: #445;
@@ -250,4 +210,179 @@
 .fin-compra {
   text-align: left;
   padding: 40px 20px;
+}
+
+/* -------------------------- FORMULARIO */
+.form-checkout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.form-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-titulo .link-back button {
+  background: none;
+  border: none;
+  color: #db0101;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.form-titulo .link-back button:hover {
+  text-decoration: underline;
+}
+
+.form-titulo .title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #db0101;
+  margin: 0;
+}
+
+.form-contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.formCheckOut {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+}
+
+.formCheckOut h2 {
+  margin-top: 0;
+  color: #db0101;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+.formCheckOut label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #223;
+  font-weight: 600;
+}
+
+.formCheckOut input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e1e6eb;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.formCheckOut button {
+  width: 100%;
+  background: #db0101;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.formCheckOut button:hover {
+  background: #c40101;
+}
+
+.orden-compra {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+}
+
+.orden-compra h3 {
+  margin-top: 0;
+  color: #db0101;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+.detalle-items {
+  margin-bottom: 1.5rem;
+}
+
+.detalle-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detalle-item:last-child {
+  border-bottom: none;
+}
+
+.producto-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.producto-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.producto-name {
+  font-weight: 600;
+  color: #223;
+  font-size: 14px;
+}
+
+.producto-cant {
+  font-size: 12px;
+  color: #666;
+}
+
+.producto-price {
+  font-weight: 600;
+  color: #db0101;
+  font-size: 14px;
+}
+
+.producto-total {
+  border-top: 2px solid #e6e6e6;
+  padding-top: 1rem;
+}
+
+.producto-total .summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #223;
+}
+
+.producto-total .summary-row.discount {
+  color: #720000;
+}
+
+.producto-total .summary-row.total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #db0101;
+  border-top: 1px solid #ddd;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
 }

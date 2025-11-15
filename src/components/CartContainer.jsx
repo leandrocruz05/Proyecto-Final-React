@@ -4,13 +4,14 @@ import { Link } from "react-router"
 import CartContext from "../context/CartContext";
 import { createBuyOrder } from "../data/firebaseService";
 import Swal from "sweetalert2";
-import FormCheckOut from "./FormCheckOut";
+import FormCheckOut from "./FormCheckout";
 
 function CartContainer() {
     const { carrito, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice, aplicaDescuento } = useContext(CartContext)
     const [orderCreated, setOrderCreated] = useState(false)
     const [cupon, setCupon] = useState("")
     const [descuento, setDescuento] = useState(0);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     async function handleCheckout(formData) {
         try {
@@ -34,13 +35,25 @@ function CartContainer() {
             clearCart();
         } catch (err) {
             console.error(err);
-            Swal.fire("Error", "Ocurrió un error al crear la orden. Intenta nuevamente.", "error");
+            Swal.fire("Error", "Ocurrió un error al crear la orden. Intenta nuevamente.", "error")
         }
     }
 
     function handleAplicarCupon() {
         const valor = aplicaDescuento(cupon)
         setDescuento(valor)
+    }
+
+    function handleFinalizarCompra() {
+        if (carrito.length === 0) {
+            Swal.fire("Carrito vacío", "No hay productos en el carrito para finalizar la compra.", "warning")
+            return
+        }
+        setShowCheckout(true)
+    }
+
+    function handleCancelCheckout() {
+        setShowCheckout(false)
     }
 
     if (orderCreated) {
@@ -58,6 +71,59 @@ function CartContainer() {
         )
     }
 
+    if (showCheckout) {
+        return (
+            <section className="container">
+                <div className="form-checkout">
+                    <div className="form-titulo">
+                        <div className="link-back">
+                            <button onClick={handleCancelCheckout}>‹ Volver al carrito</button>
+                        </div>
+                        <h2 className="title">FINALIZAR COMPRA</h2>
+                    </div>
+                    <div className="form-contenido">
+                        <div className="formCheckOut">
+                            <FormCheckOut handleCheckout={handleCheckout} />
+                        </div>
+                        <div className="orden-compra">
+                            <h3>Resumen de tu pedido</h3>
+                            <div className="detalle-items">
+                                {carrito.map((item) => (
+                                    <div key={item.id} className="detalle-item">
+                                        <img src={item.img} alt={item.title} className="producto-img" />
+                                        <div className="producto-info">
+                                            <span className="producto-name">{item.title}</span>
+                                            <span className="producto-cant">x{countItemsCartById(item.id)}</span>
+                                        </div>
+                                        <span className="producto-price">${((item.price ?? 0) * (item.quantity ?? 1)).toLocaleString('es-AR')}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="producto-total">
+                                <div className="summary-row">
+                                    <span>Subtotal</span>
+                                    <span>${(getTotalPrice() ?? 0).toLocaleString('es-AR')}</span>
+                                </div>
+                                {descuento > 0 && (
+                                    <div className="summary-row discount">
+                                        <span>Descuento</span>
+                                        <span>-${(descuento ?? 0).toLocaleString('es-AR')}</span>
+                                    </div>
+                                )}
+                                <hr />
+                                <div className="summary-row total">
+                                    <span><strong>Total</strong></span>
+                                    <span className="total"><strong>${((getTotalPrice() ?? 0) - (descuento ?? 0)).toLocaleString('es-AR')}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+
     return (
         <section className="container">
             <div className="link-back"><Link to="/">‹ Volver a la tienda</Link></div>
@@ -67,7 +133,7 @@ function CartContainer() {
                     <h2 className="title">MI CARRITO</h2>
 
                     {carrito.length === 0 ? (
-                        <div className="empty-cart">
+                        <div className="carrito-vacio">
                             <p>Tu carrito está vacío.</p>
                             <Link to="/" className="link">Agregar productos</Link>
                         </div>
@@ -96,7 +162,7 @@ function CartContainer() {
                                             </div>
 
                                             <div className="item-price">
-                                                <p>${((item.price ?? 0) * (item.quantity ?? 1))}</p>
+                                                <p>${((item.price ?? 0) * (item.quantity ?? 1)).toLocaleString('es-AR')}</p>
                                                 <button className="remove-btn" onClick={() => { clearItem && clearItem(item.id) }}>✕</button>
                                             </div>
                                         </li>
@@ -131,29 +197,20 @@ function CartContainer() {
                         <div className="summary-row discount">
                             <span>Cupón descuento</span>
                             <span>-${(descuento ?? 0).toLocaleString('es-AR')}</span>
-
                         </div>
                         <hr />
                         <div className="summary-row total">
                             <span>Total</span>
                             <span className="total">${((getTotalPrice() ?? 0) - (descuento ?? 0)).toLocaleString('es-AR')}</span>
                         </div>
-                        <button className="btn btn-primary finalizar" disabled={carrito.length === 0}>
+                        <button className="btn btn-primary finalizar" onClick={handleFinalizarCompra}>
                             Finalizar compra
                         </button>
                     </div>
                 </aside>
             </div>
-
-            {/* {(
-                <div className="checkout-modal">
-                    <div className="checkout-modal-inner">
-                        <FormCheckOut handleCheckout={handleCheckout} />
-                    </div>
-                </div>
-            )} */}
         </section>
-    );
+    )
 }
 
 export default CartContainer
