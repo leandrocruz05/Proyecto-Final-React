@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 import FormCheckOut from "./FormCheckOut";
 
 function CartContainer() {
-    const { carrito, addItem, removeItem, clearCart, countItemsCartById, getTotalPrice } = useContext(CartContext)
+    const { carrito, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice, aplicaDescuento } = useContext(CartContext)
     const [orderCreated, setOrderCreated] = useState(false)
+    const [cupon, setCupon] = useState("")
+    const [descuento, setDescuento] = useState(0);
 
     async function handleCheckout(formData) {
         try {
@@ -34,6 +36,11 @@ function CartContainer() {
             console.error(err);
             Swal.fire("Error", "Ocurrió un error al crear la orden. Intenta nuevamente.", "error");
         }
+    }
+
+    function handleAplicarCupon() {
+        const valor = aplicaDescuento(cupon)
+        setDescuento(valor)
     }
 
     if (orderCreated) {
@@ -82,23 +89,22 @@ function CartContainer() {
 
                                             <div>
                                                 <div className="count-controls">
-                                                    
-                                                    <button className="btn-count" onClick={() => removeItem(item)}>-</button>
+                                                    <button className="btn-count" onClick={() => { removeItem(item); handleAplicarCupon(); }}>-</button>
                                                     <span className="cant-count">{countItemsCartById(item.id)}</span>
-                                                    <button className="btn-count" onClick={() => addItem(item)}>+</button>
+                                                    <button className="btn-count" onClick={() => { addItem(item); handleAplicarCupon(); }}>+</button>
                                                 </div>
                                             </div>
 
                                             <div className="item-price">
                                                 <p>${((item.price ?? 0) * (item.quantity ?? 1))}</p>
-                                                <button className="remove-btn" onClick={() => clearItem && clearItem(item.id)}>✕</button>
+                                                <button className="remove-btn" onClick={() => { clearItem && clearItem(item.id) }}>✕</button>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
 
                                 <div className="cart-actions">
-                                    <button className="btn btn-secondary" onClick={() => clearCart && clearCart()}>Vaciar Carrito</button>
+                                    <button className="btn btn-secondary" onClick={() => { clearCart && clearCart(); }}>Vaciar Carrito</button>
                                     <Link to="/" className="link">‹ Agregar más productos</Link>
                                 </div>
                             </>
@@ -106,26 +112,36 @@ function CartContainer() {
                 </div>
 
                 <aside className="cart-sidebar">
-                    <div className="coupon-box">
-                        <div className="coupon-header">
+                    <div className="cupon-box">
+                        <div className="cupon-header">
                             <span className="coupon-icon">🎟️</span>
                             <span>Tengo cupón de descuento</span>
                         </div>
-                        {/* Si quieres agregar input de cupon aquí */}
+                        <input type="text" className="cupon-input" placeholder="Ingresa tu cupón aquí" value={cupon} onChange={(evento) => setCupon(evento.target.value)} />
+                        <button className="btn btn-secondary" onClick={handleAplicarCupon}>Aplicar cupón</button>
+
                     </div>
 
                     <div className="summary-box">
+                        <div className="summary-row subtotal">
+                            <span>Subtotal</span>
+                            <span>${(getTotalPrice() ?? 0).toLocaleString('es-AR')}</span>
+
+                        </div>
+                        <div className="summary-row discount">
+                            <span>Cupón descuento</span>
+                            <span>-${(descuento ?? 0).toLocaleString('es-AR')}</span>
+
+                        </div>
                         <hr />
                         <div className="summary-row total">
                             <span>Total</span>
-                            <span className="total-amount">${(getTotalPrice()).toLocaleString('es-AR')}</span>
+                            <span className="total">${((getTotalPrice() ?? 0) - (descuento ?? 0)).toLocaleString('es-AR')}</span>
                         </div>
-                        <button className="btn btn-primary wide" disabled={carrito.length === 0}>
+                        <button className="btn btn-primary finalizar" disabled={carrito.length === 0}>
                             Finalizar compra
                         </button>
                     </div>
-
-
                 </aside>
             </div>
 

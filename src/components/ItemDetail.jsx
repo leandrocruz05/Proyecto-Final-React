@@ -39,7 +39,7 @@ function ItemDetail({ itemData, loader }) {
                 </div>
                 <div className="info">
                     <div className="titulo">{itemData.title}</div>
-                    <div className="precio">${itemData.price}</div>
+                    <div className="precio">${(itemData.price ?? 0).toLocaleString('es-AR')}</div>
                     <div className="beneficios">
                         💳 6 cuotas <b>sin interés</b> de <b>${valorCuota}</b><br />
                         💵<b>10% de descuento</b> pagando con transferencia o depósito

@@ -91,7 +91,6 @@
   display: inline-block;
 }
 
-/* Item price and remove */
 .item-price {
   position: relative;
   font-size: 17px;
@@ -109,7 +108,10 @@
   cursor: pointer;
 }
 
-/* Actions */
+.remove-btn:hover {
+  color: #db0101;
+}
+
 .cart-actions {
   display: flex;
   justify-content: space-between;
@@ -122,8 +124,7 @@
   text-decoration: underline;
 }
 
-/* Sidebar */
-.cart-sidebar .coupon-box {
+.cart-sidebar .cupon-box {
   border: 1px solid #cfe4f5;
   background: #f4fbff;
   padding: 14px;
@@ -131,12 +132,20 @@
   margin-bottom: 18px;
 }
 
-.coupon-header {
+.cupon-header {
   display: flex;
   align-items: center;
   gap: 8px;
   color: #db0101;
   font-weight: 600;
+}
+
+.cupon-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cfe4f5;
+  border-radius: 6px;
+  margin-top: 10px;
 }
 
 .summary-box {
@@ -155,12 +164,16 @@
   color: #223;
 }
 
+.summary-row span {
+  font-size: 16px;
+}
+
 .summary-row.total {
   font-weight: 800;
   font-size: 18px;
 }
 
-.total-amount {
+.total {
   font-size: 20px;
 }
 
@@ -181,7 +194,7 @@
   color: #db0101;
 }
 
-.btn.wide {
+.btn.finalizar {
   width: 100%;
   margin-top: 12px;
 }
