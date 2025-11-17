@@ -212,6 +212,16 @@
   padding: 40px 20px;
 }
 
+.fin-compra h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.fin-compra p {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
 /* -------------------------- FORMULARIO */
 .form-checkout {
   max-width: 1200px;
