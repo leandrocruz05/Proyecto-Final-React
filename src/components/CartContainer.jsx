@@ -26,9 +26,7 @@ function CartContainer() {
 
             Swal.fire({
                 title: "¡Compra exitosa!",
-                text: `Gracias por tu compra! Este es el ID de tu orden: ${response.id}`,
                 icon: "success",
-                confirmButtonText: "Aceptar",
             })
 
             setOrderCreated(response.id)
