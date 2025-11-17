@@ -3,12 +3,12 @@ import { setDoc, collection, doc, getDoc, getDocs, getFirestore, query, where, a
 import productos from "./data";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDF1yeRHccNZsNl_XDmb_7mwAcTMZ-_A-Q",
-    authDomain: "db-react-la.firebaseapp.com",
-    projectId: "db-react-la",
-    storageBucket: "db-react-la.firebasestorage.app",
+    apiKey: import.meta.env.VITE_TLA_APIKEY,
+    authDomain: import.meta.env.VITE_TLA_AUTH,
+    projectId: import.meta.env.VITE_TLA_PROJECTID,
+    storageBucket: import.meta.env.VITE_TLA_BUCKET,
     messagingSenderId: "468644251802",
-    appId: "1:468644251802:web:6f008179878a99cef1f723"
+    appId: import.meta.env.VITE_TLA_APPID
 };
 
 const app = initializeApp(firebaseConfig);
