@@ -7,7 +7,7 @@ function NavBar() {
         <>
             <div className="navbar-top">
                 <div className="logo">
-                    <Link to="/"><img src="/src/assets/logo.png" alt="Logo Store" /></Link>
+                    <Link to="/"><img src="./logo.png" alt="Logo Store" /></Link>
                 </div>
                 <CartWidget/>
             </div>

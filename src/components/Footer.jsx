@@ -1,5 +1,4 @@
 import '../styles/Footer.css'
-import logo from '../assets/logo.png';
 
 function Footer() {
     return (
@@ -13,7 +12,7 @@ function Footer() {
             <div className="footer-losandes">
                 <div className="footer-container">
                     <div className="footer-col">
-                        <img src={logo} alt="Los Andes Store" className="footer-logo" />
+                        <img src="./logo.png" alt="Los Andes Store" className="footer-logo" />
                         <h2>Novedades</h2>
 
                         <form className="footer-newsletter">
