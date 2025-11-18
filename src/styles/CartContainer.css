@@ -396,3 +396,26 @@
   margin-top: 0.5rem;
   padding-top: 1rem;
 }
+
+.item-count-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stock-message {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #db0101;
+}
+
+.no-stock-message {
+  color: #666;
+}

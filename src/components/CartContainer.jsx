@@ -7,10 +7,23 @@ import Swal from "sweetalert2";
 import FormCheckOut from "./FormCheckout";
 
 function CartContainer() {
-    const { carrito, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice, aplicaDescuento } = useContext(CartContext)
+    const { carrito,
+        addItem,
+        removeItem,
+        clearItem,
+        clearCart,
+        countItemsCartById,
+        getTotalPrice,
+        getTotalPrecioDescuento,
+        getDescuento,
+        aplicaDescuento,
+        removeCupon,
+        cuponAplicado,
+        codigoActivo,
+        porcentajeDescuento
+    } = useContext(CartContext)
     const [orderCreated, setOrderCreated] = useState(false)
     const [cupon, setCupon] = useState("")
-    const [descuento, setDescuento] = useState(0);
     const [showCheckout, setShowCheckout] = useState(false);
 
     async function handleCheckout(formData) {
@@ -18,7 +31,10 @@ function CartContainer() {
             const orderData = {
                 buyer: formData,
                 carrito,
-                total: getTotalPrice(),
+                subtotal: getTotalPrice(),
+                descuentoAplicado: cuponAplicado ? getDescuento() : 0,
+                codigoCupon: codigoActivo,
+                total: getTotalPrecioDescuento(),
                 date: new Date(),
             };
 
@@ -38,8 +54,7 @@ function CartContainer() {
     }
 
     function handleAplicarCupon() {
-        const valor = aplicaDescuento(cupon)
-        setDescuento(valor)
+        aplicaDescuento(cupon)
     }
 
     function handleFinalizarCompra() {
@@ -153,9 +168,9 @@ function CartContainer() {
 
                                             <div>
                                                 <div className="count-controls">
-                                                    <button className="btn-count" onClick={() => { removeItem(item); handleAplicarCupon(); }}>-</button>
+                                                    <button className="btn-count" onClick={() => { removeItem(item) }}>-</button>
                                                     <span className="cant-count">{countItemsCartById(item.id)}</span>
-                                                    <button className="btn-count" onClick={() => { addItem(item); handleAplicarCupon(); }}>+</button>
+                                                    <button className="btn-count" onClick={() => { addItem(item) }}>+</button>
                                                 </div>
                                             </div>
 
@@ -181,25 +196,40 @@ function CartContainer() {
                             <span className="coupon-icon">🎟️</span>
                             <span>Tengo cupón de descuento</span>
                         </div>
-                        <input type="text" className="cupon-input" placeholder="Ingresa tu cupón aquí" value={cupon} onChange={(evento) => setCupon(evento.target.value)} />
-                        <button className="btn btn-secondary" onClick={handleAplicarCupon}>Aplicar cupón</button>
-
+                        {cuponAplicado ? (
+                            <>
+                                <div className="cupon-aplicado">
+                                    <span>🎉 Cupón {codigoActivo} aplicado <br /> ({porcentajeDescuento * 100}% descuento)</span>
+                                </div>
+                                <button className="btn btn-secondary" onClick={() => removeCupon(codigoActivo)}>Remover</button>
+                            </>
+                        )
+                            :
+                            (
+                                <div className="cupon-form">
+                                    <input type="text" className="cupon-input" placeholder="Ingresa tu cupón aquí" value={cupon} onChange={(evento) => setCupon(evento.target.value)} />
+                                    <button className="btn btn-secondary" onClick={handleAplicarCupon}>Aplicar cupón</button>
+                                </div>
+                            )}
                     </div>
 
                     <div className="summary-box">
                         <div className="summary-row subtotal">
                             <span>Subtotal</span>
-                            <span>${(getTotalPrice() ?? 0).toLocaleString('es-AR')}</span>
-
+                            <span>${getTotalPrice().toLocaleString('es-AR')}</span>
                         </div>
                         <div className="summary-row discount">
-                            <span>Cupón descuento</span>
-                            <span>-${(descuento ?? 0).toLocaleString('es-AR')}</span>
+                            {cuponAplicado && (
+                                <>
+                                    <span>Cupón descuento ({codigoActivo}):</span>
+                                    <span>- ${getDescuento().toLocaleString('es-AR')}</span>
+                                </>
+                            )}
                         </div>
                         <hr />
                         <div className="summary-row total">
                             <span>Total</span>
-                            <span className="total">${((getTotalPrice() ?? 0) - (descuento ?? 0)).toLocaleString('es-AR')}</span>
+                            <span className="total">${getTotalPrecioDescuento().toLocaleString('es-AR')}</span>
                         </div>
                         <button className="btn btn-primary finalizar" onClick={handleFinalizarCompra}>
                             Finalizar compra
