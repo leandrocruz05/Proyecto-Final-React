@@ -115,18 +115,20 @@ function CartContainer() {
                             <div className="producto-total">
                                 <div className="summary-row">
                                     <span>Subtotal</span>
-                                    <span>${(getTotalPrice() ?? 0).toLocaleString('es-AR')}</span>
+                                    <span>${getTotalPrice().toLocaleString('es-AR')}</span>
                                 </div>
-                                {descuento > 0 && (
-                                    <div className="summary-row discount">
-                                        <span>Descuento</span>
-                                        <span>-${(descuento ?? 0).toLocaleString('es-AR')}</span>
-                                    </div>
-                                )}
+                                <div className="summary-row discount">
+                                    {cuponAplicado && (
+                                        <>
+                                            <span>Cupón descuento ({codigoActivo}):</span>
+                                            <span>- ${getDescuento().toLocaleString('es-AR')}</span>
+                                        </>
+                                    )}
+                                </div>
                                 <hr />
                                 <div className="summary-row total">
                                     <span><strong>Total</strong></span>
-                                    <span className="total"><strong>${((getTotalPrice() ?? 0) - (descuento ?? 0)).toLocaleString('es-AR')}</strong></span>
+                                    <span className="total"><strong>${getTotalPrecioDescuento().toLocaleString('es-AR')}</strong></span>
                                 </div>
                             </div>
                         </div>
