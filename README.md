@@ -7,9 +7,10 @@ Desarrollado como entrega final del curso de React, este proyecto demuestra el u
 ## Tabla de contenidos
 
 - [Acerca del proyecto](#acerca-del-proyecto)
+- [Funcionalidad principal](#funcionalidad-principal)
+- [Despliegue productivo](#despliegue-productivo)
 - [Tecnologías y dependencias principales](#tecnologías-y-dependencias-principales)
 - [Instalación y ejecución local](#instalación-y-ejecución-local)
-- [Despliegue productivo](#despliegue-productivo)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Contacto](#contacto)
 
@@ -22,6 +23,29 @@ Este proyecto es la evolución de una idea que nació a partir de mi pasión por
 La tienda virtual simula la experiencia de la tienda oficial de Los Andes, con la identidad visual y productos que conectan con la comunidad y los valores del club. Cada iteración y refactorización del proyecto ha significado una mejora de sus capacidades: desde la gestión avanzada de estado con React Context, hasta la integración con Firebase y el despliegue productivo en Vercel.
 
 Esta plataforma es mucho más que un desarrollo académico; es un homenaje a mi barrio y a la cultura de pertenencia que se vive al ser hincha de Los Andes.
+
+---
+
+## Funcionalidad principal
+
+Esta aplicación simula una tienda online real, permitiendo al usuario:
+
+- Visualizar el catálogo de productos (indumentaria y accesorios del club).
+- Ver detalles de cada producto y su disponibilidad real de stock.
+- Agregar productos al carrito, con validación de stock en tiempo real.
+- Visualizar y modificar el contenido del carrito: sumar, restar cantidades o eliminar productos.
+- Aplicar códigos de descuento al monto total actualizado del carrito. Códigos disponibles:  
+  - `CODER123`: 10%, `CODER456`: 15%, `CODER789`: 20%, `CODER000`: 25%
+- Finalizar la compra, momento en el que se solicita completar los datos de contacto y pago mediante un formulario.
+- Al completar correctamente la compra, se almacena la orden en Firebase y se muestra el ID único de la transacción.
+
+---
+
+## Despliegue productivo
+
+La aplicación está desplegada en Vercel para máxima disponibilidad:
+
+🌐 **Accede a la versión productiva:** [Enlace de despliegue en Vercel](https://losandesstore.vercel.app/)
 
 ---
 
@@ -59,14 +83,6 @@ npm run dev
 
 Abre en navegador: [http://localhost:5173](http://localhost:5173)  
 (El puerto puede variar según la configuración de Vite.)
-
----
-
-## Despliegue productivo
-
-La aplicación está desplegada en Vercel para máxima disponibilidad:
-
-🌐 **Accede a la versión productiva:** [Enlace de despliegue en Vercel](https://losandesstore.vercel.app/)
 
 ---
 

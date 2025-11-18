@@ -25,14 +25,14 @@ function ItemCount({ stock, onQuantityChange }) {
     }
 
     return (
-        <div>
+        <div className="item-count-container">
             <div className="item-count">
                 <button onClick={restar} disabled={count === 0}>-</button>
                 <p>{count}</p>
                 <button onClick={sumar} disabled={stock === 0}>+</button>
             </div>
-            {limit && <p>Alcanzaste el límite de stock</p>}
-            {stock === 0 && <p>Sin stock</p>}
+            {limit && <p className="stock-message">Alcanzaste el límite de stock</p>}
+            {stock === 0 && <p className="stock-message no-stock-message">Sin stock</p>}
         </div>
     )
 }

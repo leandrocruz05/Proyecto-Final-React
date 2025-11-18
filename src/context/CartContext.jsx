@@ -5,8 +5,11 @@ const CartContext = createContext({ carrito: [] })
 
 export function CartContextProvider(props) {
     const [cartItems, setCartItems] = useState([])
-    const codigosDescuento = { "CODER123": 0.10 , "CODER456": 0.15 , "CODER789": 0.20 , "CODER000": 0.25 }
-    const codigosUsados = []
+    const [cuponAplicado, setCuponAplicado] = useState(false)
+    const [codigoActivo, setCodigoActivo] = useState('')
+    const [porcentajeDescuento, setPorcentajeDescuento] = useState(0)
+    const [codigosUsados, setCodigosUsados] = useState([])
+    const codigosDescuento = { "CODER123": 0.10, "CODER456": 0.15, "CODER789": 0.20, "CODER000": 0.25 }
 
     function addItem(item) { //Agrega un item al carrito
         const existItem = cartItems.find(cartItem => cartItem.id === item.id)
@@ -28,7 +31,7 @@ export function CartContextProvider(props) {
         }
         toast.success(`🛒¡Se agrego ${item.title} al carrito!`, {
             position: "top-center",
-            autoClose: 2500,
+            autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -79,12 +82,27 @@ export function CartContextProvider(props) {
         return totalPrice
     }
 
+    function getTotalPrecioDescuento() { //Calcula el precio total con descuento aplicado
+        const subtotal = getTotalPrice()
+        if (cuponAplicado && porcentajeDescuento > 0) {
+            return subtotal - (subtotal * porcentajeDescuento)
+        }
+        return subtotal
+    }
+
+    function getDescuento() { //Obtiene el monto del descuento
+        if (cuponAplicado && porcentajeDescuento > 0) {
+            return getTotalPrice() * porcentajeDescuento
+        }
+        return 0
+    }
+
     function aplicaDescuento(codigo) { //Aplica un descuento al total del carrito
         if (codigo in codigosDescuento) {
             if (codigosUsados.includes(codigo)) {
                 toast.info("El cupón ya fue utilizado", {
                     position: "top-center",
-                    autoClose: 2500,
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -92,13 +110,17 @@ export function CartContextProvider(props) {
                     backgroundColor: "red",
                     stopOnFocus: false
                 });
-                return codigosUsados[codigo]
+                return false
             }
-            const descuento = getTotalPrice() * codigosDescuento[codigo]
-            codigosUsados.push(codigo)
+
+            setCodigosUsados([...codigosUsados, codigo])
+            setCuponAplicado(true)
+            setCodigoActivo(codigo)
+            setPorcentajeDescuento(codigosDescuento[codigo])
+
             toast.success(`¡Cupón aplicado! ${codigosDescuento[codigo] * 100}% de descuento`, {
                 position: "top-center",
-                autoClose: 2500,
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -106,11 +128,11 @@ export function CartContextProvider(props) {
                 backgroundColor: "red",
                 stopOnFocus: false
             });
-            return descuento
+            return true
         } else {
             toast.error("Código de cupón inválido", {
                 position: "top-center",
-                autoClose: 2500,
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -118,12 +140,45 @@ export function CartContextProvider(props) {
                 backgroundColor: "red",
                 stopOnFocus: false
             });
-            return 0
+            return false
         }
     }
 
+    function removeCupon(codigo) { //Remueve el cupón aplicado
+        setCuponAplicado(false)
+        setCodigoActivo('')
+        setPorcentajeDescuento(0)
+        setCodigosUsados(codigosUsados.filter(codigoUsado => codigoUsado !== codigo))
+        toast.info("Cupón removido", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            backgroundColor: "orange",
+            stopOnFocus: false
+        });
+    }
+
     return <CartContext.Provider
-        value={{ carrito: cartItems, addItem, removeItem, clearItem, clearCart, countItemsCart, countItemsCartById, getTotalPrice, aplicaDescuento }}>
+        value={{
+            carrito: cartItems,
+            addItem,
+            removeItem,
+            clearItem,
+            clearCart,
+            countItemsCart,
+            countItemsCartById,
+            getTotalPrice,
+            getTotalPrecioDescuento,
+            getDescuento,
+            aplicaDescuento,
+            removeCupon,
+            cuponAplicado,
+            codigoActivo,
+            porcentajeDescuento
+        }}>
         {props.children}
     </CartContext.Provider>
 }
